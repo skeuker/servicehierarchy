@@ -3,21 +3,79 @@
 		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="pnp.servicehierarchy">
 			<EntityType Name="SolutionArea">
 				<Key>
-					<PropertyRef  Name="SolutionAreaID"/>
+					<PropertyRef Name="SolutionAreaID"/>
 				</Key>
 				<Property Name="SolutionAreaID" Type="Edm.String" Nullable="false"/>
 				<Property Name="HierarchyNodeID" Type="Edm.String" Nullable="true"/>
 				<Property Name="SolutionAreaArchitectID" Type="Edm.String" Nullable="false"/>
 				<Property Name="SolutionAreaText" Type="Edm.String" Nullable="false"/>
-				<NavigationProperty Name="toSolutionAreaArchitect" Relationship="pnp.servicehierarchy.SolutionAreaToArchitectPerson" ToRole="Child" FromRole="Parent"/>
-			</EntityType>	
+				<NavigationProperty Name="toSolutionAreaArchitect" Relationship="pnp.servicehierarchy.SolutionAreaToArchitectPerson" ToRole="Child"
+					FromRole="Parent"/>
+			</EntityType>
+			<EntityType Name="SolutionAreaComponent">
+				<Key>
+					<PropertyRef Name="SolutionAreaComponentID"/>
+				</Key>
+				<Property Name="SolutionAreaComponentID" Type="Edm.String" Nullable="false"/>
+				<Property Name="SolutionAreaComponentText" Type="Edm.String" Nullable="true"/>
+				<Property Name="HierarchyNodeID" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="Application">
+				<Key>
+					<PropertyRef Name="ApplicationID"/>
+				</Key>
+				<Property Name="ApplicationID" Type="Edm.String" Nullable="false"/>
+				<Property Name="ApplicationText" Type="Edm.String" Nullable="true"/>
+				<Property Name="HierarchyNodeID" Type="Edm.String" Nullable="true"/>
+				<Property Name="ApplicationArchitectID" Type="Edm.String" Nullable="true"/>
+				<Property Name="BusinessDivision" Type="Edm.String" Nullable="true"/>
+				<Property Name="BusinessOwnerID" Type="Edm.String" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="ApplicationComponent">
+				<Key>
+					<PropertyRef Name="ApplicationComponentID"/>
+				</Key>
+				<Property Name="ApplicationComponentID" Type="Edm.String" Nullable="false"/>
+				<Property Name="ApplicationComponentText" Type="Edm.String" Nullable="true"/>
+				<Property Name="HierarchyNodeID" Type="Edm.String" Nullable="true"/>
+				<Property Name="AnnualGrowthFactor" Type="Edm.Int16" Nullable="true"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Nullable="true"/>
+			</EntityType>
+			<EntityType Name="Resource">
+				<Key>
+					<PropertyRef Name="ResourceID"/>
+				</Key>
+				<Property Name="ResourceID" Type="Edm.String" Nullable="false"/>
+				<Property Name="ResourceOwnerID" Type="Edm.String" Nullable="true"/>
+				<Property Name="ResourceTypeID" Type="Edm.String" Nullable="true"/>
+				<Property Name="ResourceText" Type="Edm.String" Nullable="true"/>
+				<Property Name="ResourceLocationID" Type="Edm.String" Nullable="true"/>
+				<Property Name="HierarchyMemberID" Type="Edm.String" Nullable="true"/>
+				<Property Name="ResourceCategoryID" Type="Edm.String" Nullable="true"/>
+				<Property Name="SerialNumber" Type="Edm.String" Nullable="true"/>
+				<Property Name="Manufacturer" Type="Edm.String" Nullable="true"/>
+				<Property Name="StartDate" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="EndDate" Type="Edm.DateTime" Nullable="true"/>
+				<Property Name="LandscapeTier" Type="Edm.String" Nullable="true"/>
+				<Property Name="HostingPartner" Type="Edm.String" Nullable="true"/>
+				<Property Name="Platform" Type="Edm.String" Nullable="true"/>
+				<Property Name="CreatedBy" Type="Edm.String" Nullable="true"/>
+			</EntityType>
 			<EntityType Name="Person">
 				<Key>
-					<PropertyRef  Name="PersonID"/>
+					<PropertyRef Name="PersonID"/>
 				</Key>
 				<Property Name="PersonID" Type="Edm.String" Nullable="false"/>
 				<Property Name="FirstName" Type="Edm.String" Nullable="false"/>
 				<Property Name="LastName" Type="Edm.String" Nullable="false"/>
+			</EntityType>
+			<EntityType Name="Location">
+				<Key>
+					<PropertyRef Name="LocationID"/>
+				</Key>
+				<Property Name="LocationID" Type="Edm.String" Nullable="false"/>
+				<Property Name="LocationText" Type="Edm.String" Nullable="false"/>
 			</EntityType>
 			<Association Name="SolutionAreaToArchitectPerson">
 				<End Type="pnp.servicehierarchy.SolutionArea" Role="Parent" Multiplicity="1"></End>
@@ -25,6 +83,11 @@
 			</Association>
 			<EntityContainer Name="servicehierarchy" m:IsDefaultEntityContainer="true">
 				<EntitySet Name="SolutionAreas" EntityType="pnp.servicehierarchy.SolutionArea"></EntitySet>
+				<EntitySet Name="SolutionAreaComponents" EntityType="pnp.servicehierarchy.SolutionAreaComponent"></EntitySet>
+				<EntitySet Name="Applications" EntityType="pnp.servicehierarchy.Application"></EntitySet>
+				<EntitySet Name="ApplicationComponents" EntityType="pnp.servicehierarchy.ApplicationComponent"></EntitySet>
+				<EntitySet Name="Resources" EntityType="pnp.servicehierarchy.Resource"></EntitySet>
+				<EntitySet Name="Locations" EntityType="pnp.servicehierarchy.Location"></EntitySet>
 				<EntitySet Name="People" EntityType="pnp.servicehierarchy.Person"></EntitySet>
 			</EntityContainer>
 		</Schema>
