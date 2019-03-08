@@ -38,7 +38,7 @@
 				<Property Name="ApplicationComponentID" Type="Edm.String" Nullable="false"/>
 				<Property Name="ApplicationComponentText" Type="Edm.String" Nullable="true"/>
 				<Property Name="HierarchyNodeID" Type="Edm.String" Nullable="true"/>
-				<Property Name="AnnualGrowthFactor" Type="Edm.Float" Nullable="true"/>
+				<Property Name="AnnualGrowthFactor" Type="Edm.Decimal" Nullable="true"/>
 				<Property Name="StartDate" Type="Edm.DateTime" Nullable="true"/>
 				<Property Name="EndDate" Type="Edm.DateTime" Nullable="true"/>
 			</EntityType>
